@@ -7,17 +7,18 @@ namespace Esercizio_Roulette
         static void Main(string[] args)
         {
             Roulette GabRoulette = new Roulette();
-            Giocatore giocatore = new Giocatore("pippo", "baudo");
+            Giocatore giocatore = new Giocatore("Mario", "Rossi");
             Console.WriteLine($"Budget del giocatore {giocatore.Nome} {giocatore.Cognome}: {giocatore.Budget}");
-            string scelta = "0";
+            string scelta = "";
             string esito = "";
+            byte count = 0;
 
 
-            while (scelta != "q" && giocatore.Budget > 1)
+            while (scelta != "q" && giocatore.Budget >= 1)
             {
 
-                //stampa budget - ultime estrazioni - ultima puntata (non funziona se si ricomincia il gioco inviando "0"
-                if (scelta != "0")
+                
+                if (count != 0)
                 {
                     Console.WriteLine($"Budget residuo: {giocatore.Budget}\n");
                     StampaUltimeTotEstrazioni(GabRoulette);
@@ -98,6 +99,7 @@ namespace Esercizio_Roulette
                 Console.WriteLine(esito + "\n" + estrazione + ((giocatore.Budget >=1)?"\nPremi INVIO per giocare ancora- (Q) per uscire" : "\n\n\t\tBancarotta!!!") );
                 scelta = Console.ReadLine().Trim().ToLower();
                 Console.Clear();
+                count = 1;
             }
 
 
